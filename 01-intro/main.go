@@ -3,7 +3,12 @@ package main
 import "fmt"
 
 func main() {
-	sayHelloWorld("Hello World")
+	// var whatToSay string
+	// whatToSay = "Hello World"
+
+	whatToSay := "Hello World"
+
+	sayHelloWorld(whatToSay)
 }
 
 func sayHelloWorld(whatToSay string) {
