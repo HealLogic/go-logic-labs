@@ -1,54 +1,35 @@
 package main
 
 import (
-	"bufio"
-	"fmt"
-	"math/rand"
-	"os"
-	"time"
+    "fmt"
+    "myapp/packageone" 
 )
 
-const prompt = "and press ENTER when ready."
+// Package-level variable:
+// Available to every function in this file (and package).
+var one = "One"
 
 func main() {
-	//seed the random number generator
-	rand.Seed(time.Now().UnixNano())
+    // Block-level variable:
+    // Only available inside this main function.
+    // Other functions (like myFunc) cannot see this.
+    var somethingElse = "This is a block level variable"
 
-	//rand generates a number between 0 and whatever is passed as a parameter
-	//we add 1 to it because we want the number used to be at least 1, and not
-	//greater than 10
-	var firstNumber = rand.Intn(9) + 1
-	var secondNumber = rand.Intn(9) + 1
-	var subtraction = rand.Intn(9) + 1
-	var answer = firstNumber * secondNumber - subtraction
+    fmt.Println(somethingElse)
 
-	playGuessNumber(firstNumber,secondNumber,subtraction,answer)
+    myFunc()
+
+    // Accessing an exported variable from another package
+    // Notice the Capital Letter 'P' in PublicVar
+    newString := packageone.PublicVar
+    fmt.Println("From packageone:", newString)
+
+    // Accessing an exported function from another package
+    packageone.Exported()
 }
 
-func playGuessNumber(firstNumber,secondNumber,subtraction,answer int){
-	reader := bufio.NewReader(os.Stdin)
-	
-	// display a welcome/instruction
-	fmt.Println("Guess the Number Game")
-	fmt.Println("---------------------")
-	fmt.Println("")
-
-	fmt.Println("Think of a number between 1 and 10", prompt)
-	reader.ReadString('\n')
-
-	//take  them through the games
-	fmt.Println("Multiply your number by",firstNumber,prompt)
-	reader.ReadString('\n')
-
-	fmt.Println("Now multiply the result by",secondNumber,prompt)
-	reader.ReadString('\n')
-
-	fmt.Println("Divide the result by the number you originally thought of",prompt)
-	reader.ReadString('\n')
-	
-	fmt.Println("Now subtract", subtraction,prompt)
-	reader.ReadString('\n')
-
-	//give them the answer
-	fmt.Println("The answer is", answer)
+func myFunc() {
+    // This function can see 'one' because it is package-level.
+    // But it CANNOT see 'somethingElse'.
+    fmt.Println(one)
 }
