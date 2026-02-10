@@ -10,5 +10,5 @@ func main() {
 	var blockVar string = "this is block variable"
 
 	// Call the PrintMe function from packageone, passing myVar, blockVar, and PackageVar
-	packageone.PrintMe(myVar, blockVar, packageone.PackageVar)
+	packageone.PrintMe(myVar, blockVar)
 }
