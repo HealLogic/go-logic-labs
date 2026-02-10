@@ -2,13 +2,9 @@ package packageone
 
 import "fmt"
 
-// Variables/Functions starting with a Capital Letter are Exported (Public).
-// They can be seen by other packages (like main).
-var PublicVar = "I am a public variable"
+//declare a package-level variable named PackageVar of type string
+var PackageVar string = "this is package variable"
 
-// Variables starting with a lowercase letter are Private.
-var privateVar = "I am hidden"
-
-func Exported() {
-    fmt.Println("I am an exported function from packageone")
+func PrintMe(myVar, blockVar, packageVar string) {
+	fmt.Println(myVar, blockVar, packageVar)
 }

@@ -1,35 +1,14 @@
 package main
 
-import (
-    "fmt"
-    "myapp/packageone" 
-)
+import "myapp/packageone"
 
-// Package-level variable:
-// Available to every function in this file (and package).
-var one = "One"
+// Declare a package-level variable named myVar of type string
+var myVar string = "this is package Main variable"
 
 func main() {
-    // Block-level variable:
-    // Only available inside this main function.
-    // Other functions (like myFunc) cannot see this.
-    var somethingElse = "This is a block level variable"
+	// Declare a block-level variable named blockVar of type string
+	var blockVar string = "this is block variable"
 
-    fmt.Println(somethingElse)
-
-    myFunc()
-
-    // Accessing an exported variable from another package
-    // Notice the Capital Letter 'P' in PublicVar
-    newString := packageone.PublicVar
-    fmt.Println("From packageone:", newString)
-
-    // Accessing an exported function from another package
-    packageone.Exported()
-}
-
-func myFunc() {
-    // This function can see 'one' because it is package-level.
-    // But it CANNOT see 'somethingElse'.
-    fmt.Println(one)
+	// Call the PrintMe function from packageone, passing myVar, blockVar, and PackageVar
+	packageone.PrintMe(myVar, blockVar, packageone.PackageVar)
 }
